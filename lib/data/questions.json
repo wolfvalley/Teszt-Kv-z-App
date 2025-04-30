@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Mi Magyarország fővárosa?",
+    "answers": ["Debrecen", "Pécs", "Budapest", "Szeged"],
+    "correct_index": 2
+  },
+  {
+    "question": "Hány napból áll egy év szökőévben?",
+    "answers": ["365", "366", "364", "360"],
+    "correct_index": 1
+  },
+  {
+    "question": "Milyen szín keveredik a sárga és a kék színből?",
+    "answers": ["Narancs", "Lila", "Zöld", "Rózsaszín"],
+    "correct_index": 2
+  },
+  {
+    "question": "Melyik bolygó van legközelebb a Naphoz?",
+    "answers": ["Mars", "Merkúr", "Föld", "Vénusz"],
+    "correct_index": 1
+  },
+  {
+    "question": "Mennyi 5 × 6?",
+    "answers": ["30", "11", "56", "25"],
+    "correct_index": 0
+  },
+  {
+    "question": "Melyik évben volt a magyar forradalom?",
+    "answers": ["1848", "1956", "1989", "1945"],
+    "correct_index": 1
+  },
+  {
+    "question": "Melyik ország zászlajában van egy piros kör a fehér alapon?",
+    "answers": ["Japán", "Törökország", "Svájc", "Kína"],
+    "correct_index": 0
+  },
+  {
+    "question": "Mennyi a π (pi) értéke kb.?",
+    "answers": ["3.14", "2.72", "1.62", "4.20"],
+    "correct_index": 0
+  },
+  {
+    "question": "Mi a H2O?",
+    "answers": ["Hidrogén", "Víz", "Oxigén", "Só"],
+    "correct_index": 1
+  },
+  {
+    "question": "Ki írta a Toldit?",
+    "answers": ["Jókai Mór", "Arany János", "Petőfi Sándor", "Móra Ferenc"],
+    "correct_index": 1
+  }
+]
