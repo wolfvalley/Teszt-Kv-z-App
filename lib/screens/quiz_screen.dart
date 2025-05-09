@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:tesz_kviz_app/models/models.dart';
+import 'package:tesz_kviz_app/services/firestore.dart';
 import '../models/question.dart';
 import '../widgets/question_card.dart';
 import 'result_screen.dart';
@@ -23,8 +25,9 @@ class _QuizScreenState extends State<QuizScreen>
   Timer? _timer;
   int _timeLeft = 30;
   final List<int?> _selectedAnswers = [];
-
   late AnimationController _controller;
+  List<SubjectAndGrade> _subjects = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -38,16 +41,18 @@ class _QuizScreenState extends State<QuizScreen>
           _handleTimeout();
         }
       });
-
-    _controller.forward(); // elindítja az animációt
+    _controller.forward();
   }
 
   void _loadQuestions() async {
     final data = await rootBundle.loadString('lib/data/questions.json');
+    final subjects = await FirestoreService().getSubjectAndGrade();
     final List<dynamic> jsonList = json.decode(data);
     setState(() {
-      _questions = jsonList.map((e) => Question.fromJson(e)).toList();
+      _subjects = subjects;
+      _questions = _subjects[0].chapters[0].questions;
       _startTimer();
+      _isLoading = false;
     });
   }
 
@@ -67,12 +72,12 @@ class _QuizScreenState extends State<QuizScreen>
 
   void _handleTimeout() {
     _timer?.cancel();
-    _selectedAnswers.add(null);
     _showCorrect(null);
   }
 
   void _onAnswerSelected(int index) {
     _timer?.cancel();
+    _controller.stop();
     setState(() {
       _selectedIndex = index;
     });
@@ -83,7 +88,7 @@ class _QuizScreenState extends State<QuizScreen>
 
   void _showCorrect(int? selected) {
     setState(() {
-      _correctIndex = _questions[_current].correctIndex;
+      _correctIndex = _questions[_current].correct_index;
       if (selected == _correctIndex) _score++;
       _selectedAnswers.add(selected);
     });
@@ -123,11 +128,18 @@ class _QuizScreenState extends State<QuizScreen>
     if (_questions.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
+    if (_current >= _questions.length) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 100, 34, 184),
+        backgroundColor: const Color.fromARGB(255, 100, 34, 184),
       ),
-      backgroundColor: Color.fromARGB(255, 100, 34, 184),
+      backgroundColor: const Color.fromARGB(255, 100, 34, 184),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

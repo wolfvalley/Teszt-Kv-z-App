@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/question.dart';
+import 'package:tesz_kviz_app/models/models.dart';
 
 class QuestionCard extends StatelessWidget {
   final Question question;

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "409223875532",
+    "project_id": "lumeei-quezz-app-test",
+    "storage_bucket": "lumeei-quezz-app-test.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409223875532:android:9275d0cc8a93ef94c6eb69",
+        "android_client_info": {
+          "package_name": "com.example.tesz_kviz_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXbOO-o59b74q4mN7O3J1On8QT8Hi6Sgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tesz_kviz_app/models/models.dart';
 import 'package:tesz_kviz_app/screens/quiz_screen.dart';
-import '../models/question.dart';
+import 'package:tesz_kviz_app/services/auth.dart';
 
 class ResultScreen extends StatelessWidget {
   final int score;
@@ -39,8 +40,8 @@ class ResultScreen extends StatelessWidget {
                   return ListTile(
                     title: Text(q.question),
                     subtitle:
-                        Text("Helyes válasz: ${q.answers[q.correctIndex]}"),
-                    trailing: answers[i] == q.correctIndex
+                        Text("Helyes válasz: ${q.answers[q.correct_index]}"),
+                    trailing: answers[i] == q.correct_index
                         ? const Icon(Icons.check, color: Colors.green)
                         : const Icon(Icons.close, color: Colors.red),
                   );
@@ -54,7 +55,14 @@ class ResultScreen extends StatelessWidget {
                 ),
               ),
               child: const Text("Új játék"),
-            )
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  await AuthService().signOut();
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil("/", (route) => false);
+                },
+                child: const Text("Kilépés")),
           ],
         ),
       ),
